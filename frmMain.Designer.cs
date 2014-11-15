@@ -37,6 +37,7 @@
             this.ClientSize = new System.Drawing.Size(528, 377);
             this.Name = "frmMain";
             this.Text = "RssReader";
+            this.Load += new System.EventHandler(this.frmMain_Load);
             this.ResumeLayout(false);
 
         }
