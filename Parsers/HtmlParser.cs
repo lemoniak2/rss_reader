@@ -6,12 +6,17 @@ using System.Threading.Tasks;
 using HtmlAgilityPack;
 using System.Diagnostics;
 using System.Xml;
-using System.Windows.Forms;
 
 namespace RssReader.Parsers
 {
-    class HtmlParser : BaseParser
+    class HtmlParser
     {
+        public HtmlDocument GetUrlAsDocument(string url)
+        {
+            var webGet = new HtmlWeb();
+            return webGet.Load(url);
+        }
+
         public List<String> GetLinks(string url)
         {
             var document = GetUrlAsDocument(url);
