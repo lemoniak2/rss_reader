@@ -10,17 +10,11 @@ using System.Windows.Forms;
 
 namespace RssReader.Parsers
 {
-    class HtmlParser
+    class HtmlParser : BaseParser
     {
-        public HtmlAgilityPack.HtmlDocument GetUrlAsHtmlDocument(string url)
-        {
-            var webGet = new HtmlWeb();
-            return webGet.Load(url);
-        }
-
         public List<String> GetLinks(string url)
         {
-            var document = GetUrlAsHtmlDocument(url);
+            var document = GetUrlAsDocument(url);
             var dataList = new List<string>();
             var nodes = document.DocumentNode.SelectNodes("//div[contains(@class,'adres')]/a").Select
                 (
@@ -32,7 +26,7 @@ namespace RssReader.Parsers
 
         public string GetArticleContent(string url)
         {
-            var document = GetUrlAsHtmlDocument(url);
+            var document = GetUrlAsDocument(url);
             var node = document.DocumentNode.SelectSingleNode("//div[@id='wpCenter']").InnerHtml.ToString();
             return node;
         }
