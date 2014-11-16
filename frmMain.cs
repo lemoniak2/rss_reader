@@ -22,5 +22,31 @@ namespace RssReader
         {
 
         }
+
+        private void btnLoadRssData_Click(object sender, EventArgs e)
+        {
+            //example of using HtmlParser and XmlParser classes
+            var htmlParser = new HtmlParser();
+            var xmlParser = new XmlParser();
+            var rssLinks = htmlParser.GetLinks("http://rss.wp.pl/s,rozrywka,index.html"); //get all rss links
+
+            foreach(var rssLink in rssLinks)
+            {
+                var items = xmlParser.GetRssItems(rssLink); //get all items of rss
+                foreach(var item in items)
+                {
+                    /*using(var db = new ItemDataContext())
+                    {
+                        if (!db.Items.Any(o => o.Guid == item.Guid)) //check guid existance in entity DB
+                        {
+                            //if not exists then get html for item and save to db
+                            item.html = htmlParser.GetArticleContent();
+                            db.Items.Add(item);
+                            db.SaveChanges();
+                        }
+                    }*/
+                }
+            }
+        }
     }
 }

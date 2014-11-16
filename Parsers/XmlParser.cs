@@ -14,8 +14,9 @@ namespace RssReader.Parsers
     {
         public string GetRssItems(string url)
         {
+            //TODO: when Item class will be added then change "select new" to "select new Item"
+            // and change return type to list of Items - List<Item>
             var xDocument = XDocument.Load(url);
-
             var items = from item in xDocument.Descendants("item")
             select new
             {
@@ -25,6 +26,7 @@ namespace RssReader.Parsers
                 category = item.Descendants("category").First().Value,
                 pubDate = item.Descendants("pubDate").First().Value,
                 guid = item.Descendants("guid").First().Value,
+                html = "",
             };
             return "";
         }

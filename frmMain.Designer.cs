@@ -28,13 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.btnLoadRssData = new System.Windows.Forms.Button();
             this.SuspendLayout();
+            // 
+            // btnLoadRssData
+            // 
+            this.btnLoadRssData.Location = new System.Drawing.Point(12, 12);
+            this.btnLoadRssData.Name = "btnLoadRssData";
+            this.btnLoadRssData.Size = new System.Drawing.Size(139, 23);
+            this.btnLoadRssData.TabIndex = 0;
+            this.btnLoadRssData.Text = "Load rss data";
+            this.btnLoadRssData.UseVisualStyleBackColor = true;
+            this.btnLoadRssData.Click += new System.EventHandler(this.btnLoadRssData_Click);
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(528, 377);
+            this.Controls.Add(this.btnLoadRssData);
             this.Name = "frmMain";
             this.Text = "RssReader";
             this.Load += new System.EventHandler(this.frmMain_Load);
@@ -43,6 +55,8 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.Button btnLoadRssData;
     }
 }
 
