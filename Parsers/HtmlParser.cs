@@ -18,8 +18,9 @@ namespace RssReader.Parsers
             return webGet.Load(url);
         }
 
-        public List<String> GetLinks(HtmlAgilityPack.HtmlDocument document)
+        public List<String> GetLinks(string url)
         {
+            var document = GetUrlAsHtmlDocument(url);
             var dataList = new List<string>();
             var nodes = document.DocumentNode.SelectNodes("//div[contains(@class,'adres')]/a").Select
                 (
@@ -27,6 +28,13 @@ namespace RssReader.Parsers
                     adres.GetAttributeValue("href", "")
                 ).Where(ad => ad != "").ToList();
             return nodes;
+        }
+
+        public string GetArticleContent(string url)
+        {
+            var document = GetUrlAsHtmlDocument(url);
+            var node = document.DocumentNode.SelectSingleNode("//div[@id='wpCenter']").InnerHtml.ToString();
+            return node;
         }
     }
 }
