@@ -53,6 +53,8 @@
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\Item.cs" />
+    <Compile Include="Model\ItemDataContext.cs" />
     <Compile Include="Parsers\HtmlParser.cs" />
     <Compile Include="Parsers\XmlParser.cs" />
     <Compile Include="Program.cs" />
