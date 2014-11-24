@@ -31,7 +31,7 @@ namespace RssReader.Parsers
                             id = Guid.NewGuid().ToString(),
                             title = GetElementValueIfExists(item, "title"),
                             link = GetElementValueIfExists(item, "link"),
-                            description = GetElementValueIfExists(item, "desciption"),
+                            description = GetElementValueIfExists(item, "description"),
                             category = GetElementValueIfExists(item, "category"),
                             pubDate = GetElementValueIfExists(item, "pubDate"),
                             guid = GetElementValueIfExists(item, "guid"),
