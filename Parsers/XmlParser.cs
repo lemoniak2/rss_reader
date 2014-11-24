@@ -7,28 +7,37 @@ using HtmlAgilityPack;
 using System.Xml;
 using System.Xml.Linq;
 using System.Windows.Forms;
+using RssReader.Model;
 
 namespace RssReader.Parsers
 {
     class XmlParser
     {
-        public string GetRssItems(string url)
+        public string GetElementValueIfExists(XElement item, string name)
         {
-            //TODO: when Item class will be added then change "select new" to "select new Item"
-            // and change return type to list of Items - List<Item>
+            if (item.Descendants(name).Count() != 0)
+            {
+                return item.Descendants(name).First().Value;
+            }
+            else return "";
+        }
+
+        public List<Item> GetRssItems(string url)
+        {
             var xDocument = XDocument.Load(url);
             var items = from item in xDocument.Descendants("item")
-            select new
-            {
-                title = item.Descendants("title").First().Value,
-                link = item.Descendants("link").First().Value,
-                description = item.Descendants("description").First().Value,
-                category = item.Descendants("category").First().Value,
-                pubDate = item.Descendants("pubDate").First().Value,
-                guid = item.Descendants("guid").First().Value,
-                html = "",
-            };
-            return "";
+                        select new Item
+                        {
+                            id = Guid.NewGuid().ToString(),
+                            title = GetElementValueIfExists(item, "title"),
+                            link = GetElementValueIfExists(item, "link"),
+                            description = GetElementValueIfExists(item, "desciption"),
+                            category = GetElementValueIfExists(item, "category"),
+                            pubDate = GetElementValueIfExists(item, "pubDate"),
+                            guid = GetElementValueIfExists(item, "guid"),
+                            html = "",
+                        };
+            return items.ToList();
         }
     }
 }

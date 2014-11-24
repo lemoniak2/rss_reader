@@ -8,6 +8,7 @@ namespace RssReader.Model
 {
     public class Item
     {
+        public string id { get; set; }
         public string title { get; set; }
         public string link { get; set; }
         public string description { get; set; }
