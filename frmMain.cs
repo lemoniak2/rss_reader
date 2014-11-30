@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -17,15 +18,17 @@ namespace RssReader
         public frmMain()
         {
             InitializeComponent();
+            this.MinimizeBox = false;
+            this.MaximizeBox = false;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
 
         private void frmMain_Load(object sender, EventArgs e)
         {
 // TODO: This line of code loads data into the 'rssDBDataSet.Items' table. You can move, or remove it, as needed.
-this.itemsTableAdapter.Fill(this.rssDBDataSet.Items);
+            this.itemsTableAdapter.Fill(this.rssDBDataSet.Items);
 
         }
-
         private void btnLoadRssData_Click(object sender, EventArgs e)
         {
             var htmlParser = new HtmlParser();
@@ -48,6 +51,12 @@ this.itemsTableAdapter.Fill(this.rssDBDataSet.Items);
                     }
                 }
             }
+        }
+
+        private void linklblLink_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            ProcessStartInfo sInfo = new ProcessStartInfo(linklblLink.Text.ToString());
+            Process.Start(sInfo);
         }
     }
 }
