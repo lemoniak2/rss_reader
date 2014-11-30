@@ -10,7 +10,7 @@ namespace RssReader.Models
 {
     public class ItemDataContext: DbContext
     {
-            public ItemDataContext() : base("name=rss")
+            public ItemDataContext() : base("rss")
             {
 
             }
@@ -18,4 +18,3 @@ namespace RssReader.Models
             public DbSet<Item> Items { get; set; }
         }
     }
-

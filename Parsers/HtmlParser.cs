@@ -32,7 +32,13 @@ namespace RssReader.Parsers
         public string GetArticleContent(string url)
         {
             var document = GetUrlAsDocument(url);
-            var node = document.DocumentNode.SelectSingleNode("//div[@id='wpCenter']").InnerHtml.ToString();
+            string node;
+            if(document.DocumentNode.SelectSingleNode("//div[@id='wpCenter']")!=null)
+            {
+                node = document.DocumentNode.SelectSingleNode("//div[@id='wpCenter']").InnerHtml.ToString(); 
+            }
+            else
+                node=" ";
             return node;
         }
     }
