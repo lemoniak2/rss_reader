@@ -22,6 +22,18 @@ namespace RssReader.Parsers
             else return "";
         }
 
+        public string GetUrlWithoutXml(string url)
+        {
+            return url.Replace("rss.xml", "");
+        }
+
+        public string GetCorrectLink(XElement item, string url)
+        {
+            string baseUrl = GetUrlWithoutXml(url);
+            string link = GetElementValueIfExists(item, "link");
+            return link.Replace("///", baseUrl);
+        }
+
         public List<Item> GetRssItems(string url)
         {
             var xDocument = XDocument.Load(url);
@@ -30,7 +42,7 @@ namespace RssReader.Parsers
                         {
                             id = Guid.NewGuid().ToString(),
                             title = GetElementValueIfExists(item, "title"),
-                            link = GetElementValueIfExists(item, "link"),
+                            link = GetCorrectLink(item, url),
                             description = GetElementValueIfExists(item, "description"),
                             category = GetElementValueIfExists(item, "category"),
                             pubDate = GetElementValueIfExists(item, "pubDate"),

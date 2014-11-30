@@ -38,6 +38,7 @@ namespace RssReader
                     {
                         if (!db.Items.Any(o => o.guid == item.guid)) //check guid existance in entity DB
                         {
+
                             item.html = htmlParser.GetArticleContent(item.link);
                             db.Items.Add(item);
                             db.SaveChanges();
